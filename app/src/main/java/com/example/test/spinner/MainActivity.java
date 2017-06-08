@@ -11,20 +11,22 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Spinner spinner;
+    String[] days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.day,android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,days);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView myText = (TextView) view;
-        Toast.makeText(this,"You  Selected "+myText.getText(),Toast.LENGTH_SHORT).show();
+        TextView tv = (TextView) view;
+        Toast.makeText(this,"You selected "+tv.getText(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
